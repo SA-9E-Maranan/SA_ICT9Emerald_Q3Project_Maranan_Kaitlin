@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LRTix</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <style>
+      	h2 {
+      		font-family: Syne;
+          font-style: italic;
+          font-weight: 800;
+          font-size: 25px;
+          padding: 20px;
+          margin-top: -30px;
+        }
+
+        #train{
+          height: 200px;
+          width: 400px;
+        }
+        #map{
+          height: 600px;
+          width: 500px;
+        }
+        #station, #map{
+          font-size: 35px;
+          text-align: center;
+        }
+        #station-label{
+          background-color: #5c5b5a;
+          color: white;
+          font-family: Raleway;
+          padding: 5px;
+          border-radius: 5px;
+        }
+        label, #leavingFrom, #goingTo{
+          width: 320px;
+        }
+        #comment{
+          background-color: #878de6;
+        }
+        #card{
+          width: 500px;
+          height: 400px;
+        }
+        #trainsched{
+          width: 500px;
+          height: 600px;
+        }
+        #DisplayAns{
+          font-size: 50px;
+          color: white;
+        }
+        #logo{
+          width: 50px;
+          height: 40px;
+        }
+        .fa-facebook, .fa-instagram {
+          width: 35px;
+          padding: 5px;
+          color: white;
+          background-color: #222552;
+        }
+        #compute{
+          width: 150px;
+          font-size: 14px;
+        }
+
+        .nav-link {
+          color: white;
+          font-family: Raleway;
+        }
+
+        button {
+          background-color: #ffdc00;
+          border-radius: 5px;
+          margin-left: 3px;
+          width: 20%;
+        }
+
+        li {
+          color: white;
+          font-family: Raleway;
+          font-size: 15px;
+        }
+
+        h4 {
+          color: white;
+          font-family: Syne;
+          font-size: 20px;
+        }
+
+        h3 {
+          color: white;
+          font-family: Syne;
+          font-size: 28px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+<!--insert Navbar here-->
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: #222552;">
+  <div class="container-fluid">
+  <a class="navbar-brand" href="index.html" style="font-family: Syne; font-weight: 800; color: white; font-style: italic; margin-right: 10px; text-shadow: 2px 2px #ad9b24;">LRTix</a><img id="logo" src="trainlogo.png" style="margin-left">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+   <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class=" nav navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="trainsched.html">LRT Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="help.html">Help</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="feedback.html">Feedback</a>
+                    </li>
+                </ul>
+            </div>
+            <form class="d-flex">
+                  <input class="form-control" type="text" placeholder="Search…">
+           <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+    
+  </div>
+</nav>
+<!-- train sched : https://www.lrta.gov.ph/tickets-and-fares/
+  https://grit.ph/mrt/-->
+    <br><br><br><br><br>
+
+    <div class="row">
+      <center>
+      <div class="col-ld-9" style="background-color: #222552; color: white;">
+        <script>	
+        document.write("<h2>LRT Line 2 Fare Guide (Stored Value Cards) </h2>");
+        </script>
+      </div>
+    </center>
+    </div>    
+    
+      <br>
+
+    <div class="container-fluid" id="main">
+    <div class="row">
+      
+      <div class="col-md-4">
+        <center>
+          <img id="map" src="route.png">
+        </center>
+      </div>
+ 
+      <div class="col-md-4" >
+          <div class="col-md-12 form-group" id="station">
+          
+          <span id="station-label"><label for="leavingFrom">Point of Origin:</label></span>
+            <br>
+            <center>
+              <select class="form-control" id="leavingFrom" style="background-color:#878de6">
+                <option value="0">Choose a station...</option>
+                <option value="-1">Recto</option>
+                <option value="0">Legarda</option>
+                <option value="1">Pureza</option>
+                <option value="3">V. Mapa</option>
+                <option value="4">J. Ruiz</option>
+                <option value="6">Gilmore</option>
+                <option value="7">Betty Go-Belmonte</option>
+                <option value="8">Araneta Center-Cubao</option>
+                <option value="10">Anonas</option>
+                <option value="11">Katipunan</option>
+                <option value="13">Santolan</option>
+              </select>
+            <br>
+          <span id="station-label"><label for="goingTo">Destination:</label></span>
+            <br>
+              <select class="form-control" id="goingTo" style="background-color:#878de6">
+              <option value="0">Choose a station...</option>
+                <option value="-1">Recto</option>
+                <option value="0">Legarda</option>
+                <option value="1">Pureza</option>
+                <option value="3">V. Mapa</option>
+                <option value="4">J. Ruiz</option>
+                <option value="6">Gilmore</option>
+                <option value="7">Betty Go-Belmonte</option>
+                <option value="8">Araneta Center-Cubao</option>
+                <option value="10">Anonas</option>
+                <option value="11">Katipunan</option>
+                <option value="13">Santolan</option>
+              </select>
+              
+              <button onclick="calculateFare()" class="btn btn-outline-primary" id="compute" style="font-family: Raleway;">Regular Fare</button>
+              <button onclick="discountFare()" class="btn btn-outline-warning" id="compute" style="font-family: Raleway;">Discounted Fare</button>
+             </center>
+      </div>
+
+       <img src="lrt2.jpg" style="width: 350px; max-height: auto; margin-top: 60px; margin-left: 40px; background-color: #222552; padding: 10px; border-radius: 10px; ">
+
+     </div>
+
+      <div class="col-md-4" style="background-color: #222552; font-color: white; margin-left: -15px; border-radius: 10px; max-height: auto; max-width: 100%; height: 281px; padding: 10px;">
+        <script>  
+        document.write("<h3>Ticket Price:</h3>");
+        </script>
+        <br><br>
+        <center>
+            <br>
+            <p id="DisplayAns"></p>
+        </center>
+       <div class="col-md-4" style="background-color: #222552; font-color: white; margin-left: -10px; border-radius: 10px; max-height: auto; height: 280px; width: 450px; margin-top: 170px; padding: 10px;">
+        <h4 style="background-color: #fce572; padding: 5px; text-shadow: 2px 2px 2px #222552; border-radius: 5px;"> 2 Ways to Load your Beep Card </h4>
+        <ul>
+          <li> Through teller booths or ticket vending machines: </li>
+          <ol>
+            <li> Approach the teller booth/ticket vending machine. </li>
+            <li> Select the road option. </li>
+            <li> Follow the instructions on the screen. </li>
+          </ol>
+          <li> Through Beep Card e-Load Stations: </li>
+          <ol>
+            <li> Visit any Beep Card e-Load Station. </li>
+            <li> Place your card into the slot. </li>
+            <li> Follow the instructions on the screen and wait for your updated balance. </li>
+          </ol>
+        </ul>
+      </div>
+    </li>
+         </div>
+    </center>      
+     
+    </div>
+    </div>
+<br><br>
+ <hr>
+
+     <br><br>
+
+<footer>
+  <center>
+  <p style="font-family: Raleway;">&copy; 2025 Kaitlin Pia Maranan, 9-Emerald</p>
+      <p style="font-family: Raleway;">Images and information sourced from <a href="https://www.lrta.gov.ph/tickets-and-fares/" target="_blank"><i>lrta.gov.ph</i></a>, <a href="https://ltoportal.ph/how-to-top-up-reload-beep-card/#google_vignette" target="_blank"><i> ltoportal.ph</i></a>, <a href="https://www.pna.gov.ph/articles/1166006" target="_blank"><i>pna.gov.ph</i></a>, <a href="https://en.wikipedia.org/wiki/File:Manila_LRT_map-oct-10_mc.png" target="_blank"><i> wikipedia.com</i></a>, and <a href="https://commons.wikimedia.org/wiki/File:Auckland_transport_train_logo.png" target="_blank"><i>commons.wikimedia.org</i></a></p>
+      </center>
+      <br>
+</footer>
+<script>
+    function calculateFare() {
+        let leavingFrom = document.getElementById("leavingFrom").value;
+        let goingTo = document.getElementById("goingTo").value;
+        
+        if (leavingFrom === "" || goingTo === "" || leavingFrom === goingTo) {
+            document.getElementById("DisplayAns").innerHTML = "<h4>Please select valid stations.</h4>";
+            return; //This is to ensure they choose valid stations.
+        }
+
+        let basefare = 14;
+        let distance = Math.abs(goingTo - leavingFrom);
+        let fare = basefare + distance;
+
+        document.getElementById("DisplayAns").innerHTML = fare + ".00";
+    }
+
+    function discountFare() {
+        let leavingFrom = document.getElementById("leavingFrom").value;
+        let goingTo = document.getElementById("goingTo").value;
+        
+        if (leavingFrom === "" || goingTo === "" || leavingFrom === goingTo) {
+            document.getElementById("DisplayAns").innerHTML = "<h4>Please select valid stations.</h4>";
+            return;
+        }
+
+        let basefare = 14;
+        let distance = Math.abs(goingTo - leavingFrom);
+        let disc_fare = 0.80 * (basefare + distance);
+
+        document.getElementById("DisplayAns").innerHTML = disc_fare.toFixed(2);
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html> 
+    
